@@ -1,0 +1,47 @@
+{
+  "name": "excalidraw",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Excalidraw CLI — create hand-drawn diagrams from the command line",
+  "license": "MIT",
+  "main": "dist/api.js",
+  "types": "dist/api.d.ts",
+  "bin": {
+    "excalidraw": "dist/index.js",
+    "excalidraw-cli": "dist/index.js"
+
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/api.d.ts",
+      "default": "./dist/api.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "@clack/prompts": "^0.10.0",
+    "ora": "^8.2.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "pnpm@9.15.4"
+}

@@ -1,0 +1,414 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "excalidraw-cli",
+  "elements": [
+    {
+      "type": "text",
+      "id": "title",
+      "x": 330,
+      "y": 30,
+      "text": "How a GET Request Works",
+      "fontSize": 28
+    },
+    {
+      "type": "rectangle",
+      "id": "client",
+      "x": 50,
+      "y": 150,
+      "width": 220,
+      "height": 100,
+      "roundness": {
+        "type": 3
+      },
+      "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid",
+      "label": {
+        "text": "Client\n(Browser/App)",
+        "fontSize": 20
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "a1",
+      "x": 270,
+      "y": 175,
+      "width": 150,
+      "height": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          150,
+          0
+        ]
+      ],
+      "endArrowhead": "arrow",
+      "startBinding": {
+        "elementId": "client",
+        "fixedPoint": [
+          1,
+          0.4
+        ]
+      },
+      "endBinding": {
+        "elementId": "dns",
+        "fixedPoint": [
+          0,
+          0.5
+        ]
+      },
+      "label": {
+        "text": "1. DNS Lookup"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "dns",
+      "x": 440,
+      "y": 150,
+      "width": 200,
+      "height": 100,
+      "roundness": {
+        "type": 3
+      },
+      "backgroundColor": "#fff3bf",
+      "fillStyle": "solid",
+      "label": {
+        "text": "DNS Server\nResolves IP",
+        "fontSize": 18
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "a2",
+      "x": 640,
+      "y": 200,
+      "width": 150,
+      "height": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          150,
+          0
+        ]
+      ],
+      "endArrowhead": "arrow",
+      "startBinding": {
+        "elementId": "dns",
+        "fixedPoint": [
+          1,
+          0.5
+        ]
+      },
+      "endBinding": {
+        "elementId": "server",
+        "fixedPoint": [
+          0,
+          0.4
+        ]
+      },
+      "label": {
+        "text": "2. IP Address"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "server",
+      "x": 830,
+      "y": 150,
+      "width": 220,
+      "height": 100,
+      "roundness": {
+        "type": 3
+      },
+      "backgroundColor": "#b2f2bb",
+      "fillStyle": "solid",
+      "label": {
+        "text": "Web Server\n(e.g. nginx)",
+        "fontSize": 20
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "a3",
+      "x": 160,
+      "y": 250,
+      "width": 0,
+      "height": 100,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          100
+        ]
+      ],
+      "endArrowhead": "arrow",
+      "startBinding": {
+        "elementId": "client",
+        "fixedPoint": [
+          0.5,
+          1
+        ]
+      },
+      "endBinding": {
+        "elementId": "tcpbox",
+        "fixedPoint": [
+          0.5,
+          0
+        ]
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "tcpbox",
+      "x": 50,
+      "y": 370,
+      "width": 220,
+      "height": 100,
+      "roundness": {
+        "type": 3
+      },
+      "backgroundColor": "#d0bfff",
+      "fillStyle": "solid",
+      "label": {
+        "text": "3. TCP Handshake\n(SYN/SYN-ACK/ACK)",
+        "fontSize": 16
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "a4",
+      "x": 270,
+      "y": 420,
+      "width": 540,
+      "height": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          540,
+          0
+        ]
+      ],
+      "endArrowhead": "arrow",
+      "startBinding": {
+        "elementId": "tcpbox",
+        "fixedPoint": [
+          1,
+          0.5
+        ]
+      },
+      "endBinding": {
+        "elementId": "serverproc",
+        "fixedPoint": [
+          0,
+          0.5
+        ]
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "serverproc",
+      "x": 830,
+      "y": 370,
+      "width": 220,
+      "height": 100,
+      "roundness": {
+        "type": 3
+      },
+      "backgroundColor": "#b2f2bb",
+      "fillStyle": "solid",
+      "label": {
+        "text": "4. Server Receives\nGET /path HTTP/1.1",
+        "fontSize": 16
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "a5",
+      "x": 940,
+      "y": 470,
+      "width": 0,
+      "height": 80,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          80
+        ]
+      ],
+      "endArrowhead": "arrow",
+      "startBinding": {
+        "elementId": "serverproc",
+        "fixedPoint": [
+          0.5,
+          1
+        ]
+      },
+      "endBinding": {
+        "elementId": "process",
+        "fixedPoint": [
+          0.5,
+          0
+        ]
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "process",
+      "x": 830,
+      "y": 570,
+      "width": 220,
+      "height": 100,
+      "roundness": {
+        "type": 3
+      },
+      "backgroundColor": "#ffd8a8",
+      "fillStyle": "solid",
+      "label": {
+        "text": "5. Process Request\n(Route + DB/File)",
+        "fontSize": 16
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "a6",
+      "x": 830,
+      "y": 620,
+      "width": 540,
+      "height": 0,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -540,
+          0
+        ]
+      ],
+      "endArrowhead": "arrow",
+      "startBinding": {
+        "elementId": "process",
+        "fixedPoint": [
+          0,
+          0.5
+        ]
+      },
+      "endBinding": {
+        "elementId": "response",
+        "fixedPoint": [
+          1,
+          0.5
+        ]
+      },
+      "label": {
+        "text": "6. HTTP Response"
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "response",
+      "x": 50,
+      "y": 570,
+      "width": 220,
+      "height": 100,
+      "roundness": {
+        "type": 3
+      },
+      "backgroundColor": "#c3fae8",
+      "fillStyle": "solid",
+      "label": {
+        "text": "Client Receives\n200 OK + Body",
+        "fontSize": 18
+      }
+    },
+    {
+      "type": "arrow",
+      "id": "a7",
+      "x": 160,
+      "y": 670,
+      "width": 0,
+      "height": 80,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          80
+        ]
+      ],
+      "endArrowhead": "arrow",
+      "startBinding": {
+        "elementId": "response",
+        "fixedPoint": [
+          0.5,
+          1
+        ]
+      },
+      "endBinding": {
+        "elementId": "render",
+        "fixedPoint": [
+          0.5,
+          0
+        ]
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "render",
+      "x": 50,
+      "y": 770,
+      "width": 220,
+      "height": 80,
+      "roundness": {
+        "type": 3
+      },
+      "backgroundColor": "#a5d8ff",
+      "fillStyle": "solid",
+      "label": {
+        "text": "7. Render Content",
+        "fontSize": 20
+      }
+    },
+    {
+      "type": "rectangle",
+      "id": "getbox",
+      "x": 440,
+      "y": 570,
+      "width": 300,
+      "height": 220,
+      "roundness": {
+        "type": 3
+      },
+      "backgroundColor": "#dbe4ff",
+      "fillStyle": "solid",
+      "opacity": 60,
+      "label": {
+        "text": "GET Request Structure\n\nGET /api/users HTTP/1.1\nHost: example.com\nAccept: application/json\nAuthorization: Bearer xxx",
+        "fontSize": 16
+      }
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null
+  },
+  "files": {}
+}
