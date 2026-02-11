@@ -13,7 +13,7 @@ npm i -g excalidraw-cli
 Or run directly:
 
 ```bash
-npx excalidraw create --json '[...]'
+npx excalidraw-cli create --json '[...]'
 ```
 
 ### Add as an Agent Skill
@@ -23,6 +23,8 @@ npx skills add ahmadawais/excalidraw-cli
 ```
 
 ## Usage
+
+For global install you can use `excalidraw` command, or `npx excalidraw-cli` without installing.
 
 ```bash
 excalidraw [command] [options]
