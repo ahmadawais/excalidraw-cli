@@ -94,6 +94,8 @@ All overridable by setting them explicitly.
 
 ### Simple Flow — 3 Connected Boxes
 
+![Simple Flow](https://raw.githubusercontent.com/ahmadawais/excalidraw-cli/main/.github/ex1.png)
+
 ```bash
 excalidraw create --json '[
   { "type": "cameraUpdate", "width": 1200, "height": 900, "x": 0, "y": 100 },
@@ -107,6 +109,8 @@ excalidraw create --json '[
 ```
 
 ### Decision Flowchart — with Diamond
+
+![Decision Flowchart](https://raw.githubusercontent.com/ahmadawais/excalidraw-cli/main/.github/ex2.png)
 
 ```bash
 excalidraw create --json '[
@@ -123,6 +127,8 @@ excalidraw create --json '[
 ```
 
 ### Kitchen Sink — Every Feature (Dark Mode)
+
+![Kitchen Sink](https://raw.githubusercontent.com/ahmadawais/excalidraw-cli/main/.github/ex3.png)
 
 All shape types, label shorthand, arrow bindings + labels, standalone text, background zones, colors, opacity, dark mode.
 
