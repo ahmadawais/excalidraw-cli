@@ -1,3 +1,5 @@
+![Excalidraw CLI](https://raw.githubusercontent.com/ahmadawais/excalidraw-cli/main/.github/cover.jpeg)
+
 # Excalidraw CLI
 
 Create hand-drawn Excalidraw diagrams from the command line. Generate `.excalidraw` files, manage diagram checkpoints, export to excalidraw.com, and reference the complete element format — all without leaving your terminal.
