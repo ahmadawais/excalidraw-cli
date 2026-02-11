@@ -1,4 +1,4 @@
-![Excalidraw CLI](https://raw.githubusercontent.com/ahmadawais/excalidraw-cli/main/.github/cover.jpeg)
+![Excalidraw CLI](https://raw.githubusercontent.com/ahmadawais/excalidraw-cli/main/.github/excalidraw.jpeg)
 
 # Excalidraw CLI
 
