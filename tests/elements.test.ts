@@ -6,6 +6,7 @@ import {
   filterDrawElements,
   generateCheckpointId,
   buildExcalidrawFile,
+  expandLabels,
   createDiagram,
 } from "../src/lib/elements.js";
 import { MemoryCheckpointStore } from "../src/lib/checkpoint.js";
@@ -136,6 +137,99 @@ describe("resolveElements", () => {
     const store = new MemoryCheckpointStore();
     const elements = [{ type: "restoreCheckpoint", id: "nonexistent" }];
     await expect(resolveElements(elements, store)).rejects.toThrow("not found");
+  });
+});
+
+describe("expandLabels", () => {
+  it("expands label on rectangle into bound text element", () => {
+    const elements = [
+      { type: "rectangle", id: "r1", x: 100, y: 100, width: 200, height: 80, label: { text: "Hello", fontSize: 20 } },
+    ];
+    const result = expandLabels(elements);
+    expect(result).toHaveLength(2);
+    expect(result[0].type).toBe("rectangle");
+    expect(result[0].label).toBeUndefined();
+    expect(result[0].boundElements).toEqual([{ id: "r1_label", type: "text" }]);
+    expect(result[1].type).toBe("text");
+    expect(result[1].id).toBe("r1_label");
+    expect(result[1].text).toBe("Hello");
+    expect(result[1].fontSize).toBe(20);
+    expect(result[1].containerId).toBe("r1");
+    expect(result[1].textAlign).toBe("center");
+    expect(result[1].verticalAlign).toBe("middle");
+  });
+
+  it("expands label on arrow", () => {
+    const elements = [
+      { type: "arrow", id: "a1", x: 100, y: 100, width: 200, height: 0, label: { text: "connects" } },
+    ];
+    const result = expandLabels(elements);
+    expect(result).toHaveLength(2);
+    expect(result[0].type).toBe("arrow");
+    expect(result[0].boundElements).toEqual([{ id: "a1_label", type: "text" }]);
+    expect(result[1].containerId).toBe("a1");
+    expect(result[1].text).toBe("connects");
+  });
+
+  it("preserves existing boundElements when adding label", () => {
+    const elements = [
+      { type: "rectangle", id: "r1", x: 100, y: 100, width: 200, height: 80, boundElements: [{ id: "a1", type: "arrow" }], label: { text: "Box" } },
+    ];
+    const result = expandLabels(elements);
+    expect(result[0].boundElements).toHaveLength(2);
+    expect(result[0].boundElements[0]).toEqual({ id: "a1", type: "arrow" });
+    expect(result[0].boundElements[1]).toEqual({ id: "r1_label", type: "text" });
+  });
+
+  it("passes through elements without labels unchanged", () => {
+    const elements = [
+      { type: "rectangle", id: "r1", x: 100, y: 100, width: 200, height: 80 },
+      { type: "text", id: "t1", x: 0, y: 0, text: "hi" },
+    ];
+    const result = expandLabels(elements);
+    expect(result).toHaveLength(2);
+    expect(result).toEqual(elements);
+  });
+
+  it("expands label on diamond and ellipse", () => {
+    const elements = [
+      { type: "diamond", id: "d1", x: 0, y: 0, width: 150, height: 150, label: { text: "Decision" } },
+      { type: "ellipse", id: "e1", x: 0, y: 0, width: 150, height: 150, label: { text: "Circle" } },
+    ];
+    const result = expandLabels(elements);
+    expect(result).toHaveLength(4);
+    expect(result[1].containerId).toBe("d1");
+    expect(result[3].containerId).toBe("e1");
+  });
+
+  it("uses default fontSize 20 when not specified", () => {
+    const elements = [
+      { type: "rectangle", id: "r1", x: 0, y: 0, width: 200, height: 80, label: { text: "Test" } },
+    ];
+    const result = expandLabels(elements);
+    expect(result[1].fontSize).toBe(20);
+  });
+
+  it("passes strokeColor from label to text element", () => {
+    const elements = [
+      { type: "rectangle", id: "r1", x: 0, y: 0, width: 200, height: 80, label: { text: "Dark", strokeColor: "#e5e5e5" } },
+    ];
+    const result = expandLabels(elements);
+    expect(result[1].strokeColor).toBe("#e5e5e5");
+  });
+});
+
+describe("buildExcalidrawFile — label expansion", () => {
+  it("expands labels in the final file output", () => {
+    const elements = [
+      { type: "rectangle", id: "r1", x: 100, y: 100, width: 200, height: 80, label: { text: "Hello" } },
+    ];
+    const file = buildExcalidrawFile(elements) as any;
+    expect(file.elements).toHaveLength(2);
+    expect(file.elements[0].type).toBe("rectangle");
+    expect(file.elements[0].label).toBeUndefined();
+    expect(file.elements[1].type).toBe("text");
+    expect(file.elements[1].containerId).toBe("r1");
   });
 });
 

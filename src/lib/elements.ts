@@ -100,11 +100,68 @@ export function generateCheckpointId(): string {
   return crypto.randomUUID().replace(/-/g, "").slice(0, 18);
 }
 
+const SHAPE_TYPES = new Set(["rectangle", "ellipse", "diamond"]);
+const LABELABLE_TYPES = new Set(["rectangle", "ellipse", "diamond", "arrow"]);
+
+export function expandLabels(elements: any[]): any[] {
+  const result: any[] = [];
+  for (const el of elements) {
+    if (LABELABLE_TYPES.has(el.type) && el.label) {
+      const { label, ...shape } = el;
+      const textId = `${shape.id}_label`;
+      const boundRef = { id: textId, type: "text" as const };
+      shape.boundElements = [...(shape.boundElements || []), boundRef];
+
+      const textEl: any = {
+        type: "text",
+        id: textId,
+        x: shape.x + 10,
+        y: shape.y + 10,
+        width: (shape.width || 100) - 20,
+        height: (shape.height || 60) - 20,
+        text: label.text,
+        fontSize: label.fontSize || 20,
+        fontFamily: label.fontFamily || 1,
+        textAlign: "center",
+        verticalAlign: "middle",
+        containerId: shape.id,
+      };
+      if (label.strokeColor) textEl.strokeColor = label.strokeColor;
+      if (el.strokeColor && !label.strokeColor && el.type !== "arrow") {
+        textEl.strokeColor = el.strokeColor;
+      }
+
+      result.push(shape, textEl);
+    } else {
+      result.push(el);
+    }
+  }
+  return result;
+}
+
+function applyDefaults(elements: any[]): any[] {
+  return elements.map((el: any) => {
+    const out = { ...el };
+    if (SHAPE_TYPES.has(el.type)) {
+      if (out.roundness === undefined) out.roundness = { type: 3 };
+      if (out.roughness === undefined) out.roughness = 2;
+    }
+    if (el.type === "arrow") {
+      if (out.roughness === undefined) out.roughness = 2;
+    }
+    if (el.type === "text") {
+      if (out.fontFamily === undefined) out.fontFamily = 1;
+    }
+    return out;
+  });
+}
+
 /**
  * Build a complete Excalidraw file JSON structure from elements.
  */
 export function buildExcalidrawFile(elements: any[]): object {
-  const drawElements = filterDrawElements(elements);
+  const expanded = expandLabels(filterDrawElements(elements));
+  const drawElements = applyDefaults(expanded);
   return {
     type: "excalidraw",
     version: 2,

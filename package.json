@@ -1,5 +1,5 @@
 {
-  "name": "excalidraw",
+  "name": "excalidraw-cli",
   "version": "0.0.1",
   "type": "module",
   "description": "Excalidraw CLI — create hand-drawn diagrams from the command line",

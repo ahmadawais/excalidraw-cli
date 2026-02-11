@@ -43,7 +43,8 @@ export const REFERENCE = `# Excalidraw Element Format
 \`type\`, \`id\` (unique string), \`x\`, \`y\`, \`width\`, \`height\`
 
 ### Defaults (skip these)
-strokeColor="#1e1e1e", backgroundColor="transparent", fillStyle="solid", strokeWidth=2, roughness=1, opacity=100
+strokeColor="#1e1e1e", backgroundColor="transparent", fillStyle="solid", strokeWidth=2, roughness=2 (sloppy/hand-drawn), opacity=100
+Shapes get roundness={type:3} (rounded corners) by default. Text gets fontFamily=1 (Excalifont/Virgil handwritten) by default.
 Canvas background is white.
 
 ### Element Types
@@ -56,11 +57,12 @@ Canvas background is white.
 
 **Diamond**: \`{ "type": "diamond", "id": "d1", "x": 100, "y": 100, "width": 150, "height": 150 }\`
 
-**Labeled shape (PREFERRED)**: Add \`label\` to any shape for auto-centered text. No separate text element needed.
+**Labeled shape (PREFERRED)**: Add \`label\` to any shape for auto-centered text. The CLI expands this into proper bound text elements.
 \`{ "type": "rectangle", "id": "r1", "x": 100, "y": 100, "width": 200, "height": 80, "label": { "text": "Hello", "fontSize": 20 } }\`
-- Works on rectangle, ellipse, diamond
-- Text auto-centers and container auto-resizes to fit
+- Works on rectangle, ellipse, diamond, arrow
+- Label properties: \`text\` (required), \`fontSize\` (default 20), \`fontFamily\`, \`strokeColor\`
 - Saves tokens vs separate text elements
+- For dark mode text: \`"label": { "text": "Hello", "strokeColor": "#e5e5e5" }\`
 
 **Labeled arrow**: \`"label": { "text": "connects" }\` on an arrow element.
 
