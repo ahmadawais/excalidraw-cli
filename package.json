@@ -1,6 +1,6 @@
 {
   "name": "excalidraw-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "description": "Excalidraw CLI — create hand-drawn diagrams from the command line",
   "license": "MIT",
@@ -9,7 +9,6 @@
   "bin": {
     "excalidraw": "dist/index.js",
     "excalidraw-cli": "dist/index.js"
-
   },
   "files": [
     "dist"
