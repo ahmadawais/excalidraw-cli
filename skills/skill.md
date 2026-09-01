@@ -1,3 +1,8 @@
+---
+name: excalidraw-cli
+description: This skill should be used when the user asks to "create a diagram", "draw a flowchart", "make an architecture diagram", "sketch a system design", "visualize this flow", "make an excalidraw file", or mentions Excalidraw, hand-drawn diagrams, `.excalidraw` files, or shareable diagram URLs. Provides the `excalidraw-cli` JSON element schema, built-in defaults, label and arrow-binding shorthands, camera/viewport rules, color palettes, dark mode, checkpoints, and copy-paste templates.
+---
+
 # Excalidraw CLI — Agent Skill
 
 Create hand-drawn diagrams from JSON using `excalidraw-cli`. Outputs `.excalidraw` files and shareable URLs.
