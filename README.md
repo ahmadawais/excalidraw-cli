@@ -260,7 +260,7 @@ Run `excalidraw reference` for the complete element format reference, including:
 
 ## Agent Skill
 
-See [`skills/skill.md`](./skills/skill.md) for a comprehensive guide for AI agents to create diagrams with this CLI, including copy-paste templates and all features documented.
+See [`skills/excalidraw-cli/SKILL.md`](./skills/excalidraw-cli/SKILL.md) for a comprehensive guide for AI agents to create diagrams with this CLI, including copy-paste templates and all features documented.
 
 ## Development
 

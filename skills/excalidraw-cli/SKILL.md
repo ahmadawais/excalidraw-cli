@@ -1,3 +1,8 @@
+---
+name: excalidraw-cli
+description: Create hand-drawn Excalidraw diagrams from JSON using the excalidraw-cli command. Outputs .excalidraw files and sharable excalidraw.com URLs. Use when the user wants to draw a flowchart, architecture diagram, or any diagram as an .excalidraw file or a shareable link.
+---
+
 # Excalidraw CLI — Agent Skill
 
 Create hand-drawn diagrams from JSON using `excalidraw-cli`. Outputs `.excalidraw` files and shareable URLs.
